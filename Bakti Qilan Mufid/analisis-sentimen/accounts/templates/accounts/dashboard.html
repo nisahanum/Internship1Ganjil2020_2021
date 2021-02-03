@@ -1,0 +1,63 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}Analisis Sentimen Emosi{% endblock title %}
+
+
+
+{% block styles %}
+{% endblock styles%}
+
+{% block body %}
+
+<div class="container-fluid">
+  <form method="POST" class="form-group">
+    {% csrf_token %}
+    <p style="font-size:25px; font-family: sans-serif; ">Masukan kalimat untuk di analisis: </p>
+    <input type="text" class="form-control" id="kalimat" name="kalimat" placeholder="Masukan kalimat disini!" required>
+    <br>
+    <button class="btn btn-success form-control" type="submit">Submit</button>
+  </form>
+ 
+  <h2>Kalimat yang dimasukkan: </h2>
+  <h5>{{ kaaa }}</h5>
+  
+  <h2>hasil:</h2>
+  {% if prediction == 'senang' %}
+  <a class="btn btn-warning" href="#" role="button">
+    <i class="fas fa-laugh-beam"></i> Senang <i class="fas fa-laugh-beam"></i>
+  </a>
+  {% elif prediction == 'sedih' %}
+  <a class="btn btn-info" href="#" role="button">
+    <i class="fas fa-sad-cry"></i> Sedih <i class="fas fa-sad-cry"></i>
+  </a>
+  {% elif prediction == 'marah' %}
+  <a class="btn btn-danger" href="#" role="button">
+    <i class="fas fa-angry"></i> Marah <i class="fas fa-angry"></i>
+  </a>
+  {% elif prediction == 'antisipasi' %}
+  <a class="btn btn-primary" href="#" role="button">
+    <i class="fas fa-grimace"></i> Antisipasi <i class="fas fa-grimace"></i>
+  </a>
+  {% elif prediction == 'jijik' %}
+  <a class="btn btn-secondary" href="#" role="button">
+    <i class="fas fa-tired"></i> Jijik <i class="fas fa-tired"></i>
+  </a>
+  {% elif prediction == 'takut' %}
+  <a class="btn btn-dark" href="#" role="button">
+    <i class="fas fa-flushed"></i> Takut <i class="fas fa-flushed"></i>
+  </a>
+  {% elif prediction == 'percaya' %}
+  <a class="btn btn-success" href="#" role="button">
+    <i class="fas fa-smile-wink"></i> Percaya <i class="fas fa-smile-wink"></i>
+  </a>
+  {% elif prediction == 'terkejut' %}
+  <a class="btn btn-light" href="#" role="button">
+    <i class="far fa-surprise"></i> Terkejut <i class="far fa-surprise"></i>
+  </a>
+  {% endif %}
+</div>
+    
+    
+   
+{% endblock body %}
